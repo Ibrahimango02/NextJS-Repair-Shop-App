@@ -1,5 +1,5 @@
-import { pgTable, serial, varchar, boolean, timestamp, integer, text } from 'drizzle-orm/pg-core'
-import { relations } from 'drizzle-orm'
+import { pgTable, serial, varchar, boolean, timestamp, integer, text } from "drizzle-orm/pg-core"
+import { relations } from "drizzle-orm"
 
 export const customers = pgTable("customers", {
     id: serial("id").primaryKey(),
@@ -29,15 +29,15 @@ export const tickets = pgTable("tickets", {
     updatedAt: timestamp("updated_at").notNull().defaultNow().$onUpdate(() => new Date()),
 })
 
-// Create relations
-// Customer can have many tickets
+// Create relations 
+// customer can have many tickets (one to many)
 export const customersRelations = relations(customers,
     ({ many }) => ({
         tickets: many(tickets),
     })
 )
 
-// Ticket can have only one customer
+// ticket can have only one customer (many to one)
 export const ticketsRelations = relations(tickets,
     ({ one }) => ({
         customer: one(customers, {
