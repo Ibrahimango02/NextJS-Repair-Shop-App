@@ -49,7 +49,7 @@ export default function CustomerForm({ customer }: Props) {
         active: customer?.active ?? true,
     }
 
-    const form = useForm<insertCustomerSchemaType>({
+    const form = useForm<insertCustomerSchemaType>({       // useForm hook used to validate entry data with zod
         mode: 'onBlur',
         resolver: zodResolver(insertCustomerSchema),
         defaultValues,
@@ -93,7 +93,7 @@ export default function CustomerForm({ customer }: Props) {
                 </h2>
             </div>
 
-            <Form {...form}>
+            <Form {...form}>        {/* pass in the useForm hook to validate data */}
                 <form
                     onSubmit={form.handleSubmit(submitForm)}
                     className='flex flex-col md:flex-row gap-4 md:gap-8'
