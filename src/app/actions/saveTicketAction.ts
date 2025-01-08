@@ -32,7 +32,7 @@ export const saveTicketAction = actionClient
                 customerId: ticket.customerId,
                 title: ticket.title,
                 description: ticket.description,
-                tech: ticket.tech?.toLowerCase(),
+                tech: ticket.tech,
             }).returning({ insertedId: tickets.id })
 
             return { message: `Ticket ID #${result[0].insertedId} created successfully.` }

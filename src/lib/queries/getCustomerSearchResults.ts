@@ -12,5 +12,6 @@ export async function getCustomerSearchResults(searchText: string) {
             ilike(customers.zip, `%${searchText}%`),
             sql`lower(concat(${customers.firstName}, ' ', ${customers.lastName})) LIKE ${`%${searchText.toLowerCase().replace(' ', '%')}%`}`    // matches any combination of firstname and lastname characters
         ))
+        .orderBy(customers.lastName)
     return results
 }
